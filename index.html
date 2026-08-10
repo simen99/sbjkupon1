@@ -22,34 +22,22 @@
       --err: #ff5c7a;
       --ring: 0 0 0 2px rgba(244, 197, 66, .25), 0 8px 30px rgba(244, 197, 66, .15);
       --safe-bottom: max(env(safe-area-inset-bottom), 16px);
-      
-      --sbjx-gold: #f4c542;
-      --sbjx-gold2: #d6a400;
-      --sbjx-ink: #0e0e15;
-      --sbjx-soft: #15151f;
-      --sbjx-txt: #e9e9ef;
-      --sbjx-muted: #a5a5b5;
       --sbjx-glow: 0 12px 34px rgba(244, 197, 66, .32);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
     body {
       margin: 0;
-      font-family: Poppins, system-ui, Segoe UI, Roboto, Arial;
+      font-family: Poppins, system-ui, Segoe UI, Roboto, Arial, sans-serif;
       background: radial-gradient(1200px 600px at 10% -10%, rgba(244, 197, 66, .06), transparent 60%),
                   radial-gradient(1200px 600px at 90% 110%, rgba(244, 197, 66, .06), transparent 60%),
                   var(--bg);
       color: var(--text);
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      padding-bottom: calc(72px + var(--safe-bottom));
+      padding-bottom: calc(60px + env(safe-area-inset-bottom));
     }
 
     .wrap {
@@ -95,12 +83,8 @@
       margin: 6px 0 2px;
     }
 
-    @media (min-width: 480px) {
-      .title { font-size: 30px; }
-    }
-    @media (min-width: 720px) {
-      .title { font-size: 34px; }
-    }
+    @media (min-width: 480px) { .title { font-size: 30px; } }
+    @media (min-width: 720px) { .title { font-size: 34px; } }
 
     .subtitle {
       color: var(--muted);
@@ -117,7 +101,7 @@
       overflow: hidden;
     }
 
-    /* border glow emas */
+    /* Border glow emas */
     .panel::before {
       content: "";
       position: absolute;
@@ -138,6 +122,7 @@
       grid-template-columns: 1fr auto;
       gap: 12px;
       align-items: center;
+      margin: 0;
     }
 
     .input {
@@ -174,7 +159,6 @@
       border-radius: 12px;
       min-width: 140px;
       min-height: 48px;
-      will-change: transform, filter, box-shadow;
       transition: transform .1s ease, filter .2s ease, box-shadow .2s ease;
       box-shadow: 0 10px 30px rgba(244, 197, 66, .25);
     }
@@ -184,16 +168,8 @@
       box-shadow: 0 12px 32px rgba(244, 197, 66, .35);
     }
 
-    .btn:active {
-      transform: translateY(1px) scale(.99);
-    }
-
-    .btn:disabled {
-      opacity: .7;
-      cursor: not-allowed;
-      filter: grayscale(.1) brightness(.95);
-      transform: none;
-    }
+    .btn:active { transform: translateY(1px) scale(.99); }
+    .btn:disabled { opacity: .7; cursor: not-allowed; filter: grayscale(.1) brightness(.95); transform: none; }
 
     .btn .dot {
       position: absolute;
@@ -215,19 +191,10 @@
       margin-right: 8px;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    .section {
-      margin-top: 18px;
-    }
-
-    .hint {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 8px;
-    }
+    .section { margin-top: 18px; }
+    .hint { color: var(--muted); font-size: 13px; margin-top: 8px; }
 
     /* ===== Loading Skeleton ===== */
     .skeleton {
@@ -272,10 +239,7 @@
     .sk-bar:nth-child(2) { width: 76%; animation-delay: .1s; }
     .sk-bar:nth-child(3) { width: 62%; animation-delay: .2s; }
 
-    @keyframes sk-pulse {
-      0%, 100% { opacity: .55 }
-      50% { opacity: .95 }
-    }
+    @keyframes sk-pulse { 0%, 100% { opacity: .55 } 50% { opacity: .95 } }
 
     /* ===== Card / Table ===== */
     .card {
@@ -285,33 +249,6 @@
       padding: 16px;
       margin-top: 12px;
       overflow-x: hidden;
-    }
-
-    .grid {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .kv {
-      background: #0e0e15;
-      border: 1px solid rgba(255, 255, 255, .06);
-      border-radius: 12px;
-      padding: 12px;
-      min-height: 64px;
-      position: relative;
-    }
-
-    .kv label {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .kv .val {
-      font-weight: 700;
-      letter-spacing: .2px;
     }
 
     .copy-btn {
@@ -330,37 +267,9 @@
       transition: transform .12s ease, filter .15s ease, box-shadow .2s ease;
     }
 
-    .copy-btn:hover {
-      filter: brightness(1.04);
-      transform: translateY(-1px);
-    }
-
-    .copy-btn:active {
-      transform: translateY(0) scale(.98);
-    }
-
-    .copy-btn::before {
-      content: "📋";
-      font-size: 14px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(33, 208, 122, .4);
-      color: #bff7da;
-      background: rgba(33, 208, 122, .1);
-    }
-
-    .status.err {
-      border-color: rgba(255, 92, 122, .5);
-      color: #ffd0da;
-      background: rgba(255, 92, 122, .1);
-    }
+    .copy-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
+    .copy-btn:active { transform: translateY(0) scale(.98); }
+    .copy-btn::before { content: "📋"; font-size: 14px; }
 
     .toast {
       position: fixed;
@@ -384,6 +293,7 @@
       gap: 10px;
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
+      transition: opacity 0.3s ease;
     }
 
     footer {
@@ -391,11 +301,6 @@
       color: var(--muted);
       font-size: 12px;
       text-align: center;
-    }
-
-    @media (max-width: 720px) {
-      .grid { grid-template-columns: 1fr; }
-      .btn { min-width: 120px; }
     }
 
     .table {
@@ -414,7 +319,6 @@
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .25px;
-      border-bottom: 0;
     }
 
     .table tbody tr {
@@ -428,9 +332,7 @@
     .table tbody td {
       padding: 16px 14px;
       font-size: 16px;
-      border-bottom: 0 !important;
       word-wrap: break-word;
-      white-space: normal;
       text-align: center;
     }
 
@@ -441,10 +343,6 @@
 
     .table tbody td:nth-child(1) { font-weight: 800; }
     .table tbody td:nth-child(3) { font-weight: 800; letter-spacing: .3px; }
-
-    .table tbody tr:hover {
-      background: rgba(255, 255, 255, .03);
-    }
 
     .wa-btn {
       display: inline-block;
@@ -458,14 +356,8 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
     }
 
-    .wa-btn:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-    }
-
-    .wa-btn:active {
-      transform: scale(.96);
-    }
+    .wa-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .wa-btn:active { transform: scale(.96); }
 
     /* ===== Popup Promo ===== */
     .popup-close {
@@ -485,9 +377,7 @@
       z-index: 2;
     }
 
-    .popup-close:hover {
-      transform: scale(1.08);
-    }
+    .popup-close:hover { transform: scale(1.08); }
 
     .popup-dots {
       position: absolute;
@@ -533,11 +423,6 @@
       100% { transform: scale(1.8); opacity: 0; }
     }
 
-    @media (max-width: 420px) {
-      .popup-close { width: 38px; height: 38px; font-size: 22px; line-height: 38px; }
-    }
-
-    /* Backdrop popup */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -549,26 +434,22 @@
       z-index: 999999;
     }
 
-    .modal-backdrop.open {
-      display: flex;
-    }
+    .modal-backdrop.open { display: flex; }
 
+    /* CSS Aspect Ratio untuk Popup Promo (Sangat Efisien) */
     .popup-wrap {
       position: relative;
-      width: 600px;
-      max-width: 92vw;
+      width: min(92vw, 600px);
+      aspect-ratio: 600 / 347;
+      max-height: 80vh;
       border: 3px solid var(--gold);
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 20px 50px rgba(0, 0, 0, .55), 0 0 0 5px rgba(244, 197, 66, .28) inset;
       background: #000;
-      max-height: 80vh;
     }
 
-    .popup-img.fadeout {
-      opacity: 0;
-    }
-
+    .popup-img.fadeout { opacity: 0; }
     .popup-img {
       width: 100%;
       height: 100%;
@@ -576,7 +457,7 @@
       background: #000;
       display: block;
       opacity: 1;
-      transition: opacity .6s ease;
+      transition: opacity .4s ease;
     }
 
     @media (max-width: 480px) {
@@ -587,187 +468,52 @@
 
     /* ===== Mobile View Polish ===== */
     @media (max-width: 560px) {
-      .hero {
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 6px;
-      }
-
-      .badge {
-        margin: 6px auto 8px;
-        font-size: 15px;
-        padding: 10px 20px;
-        border-radius: 999px;
-        font-weight: 700;
-        box-shadow: 0 0 18px rgba(244, 197, 66, .4);
-        display: inline-block;
-        position: relative;
-      }
-
+      .hero { justify-content: center; width: 100%; margin-bottom: 6px; }
+      .badge { margin: 6px auto 8px; font-size: 15px; padding: 10px 20px; box-shadow: 0 0 18px rgba(244, 197, 66, .4); }
       .badge::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        border-radius: 999px;
+        content: ""; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+        width: 60%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
       }
+      .title { text-align: center; font-size: 22px; margin: 4px 0; }
+      .subtitle { text-align: center; font-size: 14px; margin: 0 0 6px; padding: 0 10px; }
+      .wrap { padding: 24px 14px 100px; }
+      .panel { padding: 14px; }
+      .searchbar { grid-template-columns: 1fr; gap: 10px; }
+      .btn { width: 100%; }
 
-      .title {
-        text-align: center;
-        font-size: 22px;
-        margin: 4px 0 4px;
-      }
-
-      .subtitle {
-        text-align: center;
-        font-size: 14px;
-        line-height: 1.4;
-        margin: 0 0 6px;
-        padding: 0 10px;
-      }
-
-      .wrap {
-        padding: 24px 14px 100px;
-      }
-
-      .panel {
-        padding: 14px;
-      }
-
-      .searchbar {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      /* Mobile Table Grid Layout */
-      .table thead {
-        display: none;
-      }
-
-      .table {
-        border-collapse: separate;
-        border-spacing: 0 10px;
-      }
-
-      .table tbody {
-        display: block;
-      }
-
-      .table tbody tr {
-        display: block;
-        background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .025));
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 14px;
-        padding: 12px;
-        margin: 12px 0;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
-        position: relative;
-        overflow: hidden;
-      }
-
+      .table thead { display: none; }
+      .table tbody tr { display: block; padding: 12px; margin: 12px 0; position: relative; }
       .table tbody tr::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 2px;
+        content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 2px;
         background: linear-gradient(90deg, #f4c542, #ffffff, #d6a400, #f4c542, #ffffff, #d6a400);
-        background-size: 400% 400%;
-        animation: neonRun 4s linear infinite;
+        background-size: 400% 400%; animation: neonRun 4s linear infinite;
         -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
+        -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
       }
-
       .table tbody td {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        border: 0 !important;
-        padding: 8px 0;
-        text-align: left;
+        display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; text-align: left;
       }
-
       .table tbody td::before {
-        content: attr(data-label);
-        flex: 0 0 auto;
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .2px;
-        text-transform: uppercase;
-        margin-right: 10px;
+        content: attr(data-label); color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase;
       }
-
-      .table tbody td > * {
-        flex: 1 1 auto;
-      }
-
-      .code-val {
-        white-space: nowrap;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-weight: 800;
-        letter-spacing: .4px;
-      }
-
-      .copy-btn {
-        flex: 0 0 auto;
-        padding: 8px 14px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .25);
-      }
-
-      .table tbody td[data-label="Kode"] {
-        gap: 12px;
-      }
-
-      .table tbody td[data-label="Kode"] .code-val {
-        min-width: 0;
-      }
-
-      .table tbody td[data-label="Kode"] .copy-btn {
-        flex: 0 0 auto;
-      }
+      .table tbody td > * { flex: 1 1 auto; }
+      .code-val { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 800; }
+      .copy-btn { flex: 0 0 auto; padding: 8px 14px; }
     }
 
     .play-btn {
-      display: block;
-      margin: 18px auto 0;
-      max-width: 280px;
-      text-align: center;
+      display: block; margin: 18px auto 0; max-width: 280px; text-align: center;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
-      color: #1a1a1a;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(244, 197, 66, .25);
-      transition: transform .12s ease, filter .15s ease;
+      color: #1a1a1a; font-weight: 800; font-size: 16px; padding: 14px 18px; border-radius: 14px;
+      text-decoration: none; box-shadow: 0 10px 30px rgba(244, 197, 66, .25); transition: transform .12s ease, filter .15s ease;
     }
-
-    .play-btn:hover {
-      filter: brightness(1.06);
-      transform: translateY(-1px);
-    }
-
-    .play-btn:active {
-      transform: scale(.98);
-    }
+    .play-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .play-btn:active { transform: scale(.98); }
 
     /* ===== Floating Buttons Container ===== */
     .floating-buttons {
       position: fixed;
-      bottom: 80px;
+      bottom: calc(60px + env(safe-area-inset-bottom) + 12px);
       left: 12px;
       display: flex;
       flex-direction: column;
@@ -776,663 +522,123 @@
     }
 
     .floating-buttons .float-btn img {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, .45);
+      width: 54px; height: 54px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0, 0, 0, .45);
       transition: transform 0.2s ease;
     }
+    .floating-buttons .float-btn img:hover { transform: scale(1.12); }
 
-    .floating-buttons .float-btn img:hover {
-      transform: scale(1.12);
+    .float-btn.with-text { display: flex; align-items: center; gap: 8px; padding-right: 6px; text-decoration: none !important; }
+    .float-btn.with-text .float-text {
+      font-size: 11px; font-weight: 800; letter-spacing: .2px; white-space: nowrap; text-decoration: none !important;
     }
+    .float-wa.with-text .float-text { color: #25d366; text-shadow: 0 0 6px rgba(37, 211, 102, .45); }
+    .float-tg.with-text .float-text { color: #2aabee; text-shadow: 0 0 6px rgba(42, 171, 238, .45); }
 
     /* ===== Mini Slider ===== */
     .mini-slider {
-      --ms-w: 900;
-      --ms-h: 174;
-      position: relative;
-      width: 980px;
-      max-width: 100%;
-      margin: 18px auto;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      aspect-ratio: var(--ms-w) / var(--ms-h);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+      --ms-w: 900; --ms-h: 174;
+      position: relative; width: 980px; max-width: 100%; margin: 18px auto; border-radius: 12px;
+      overflow: hidden; background: #000; aspect-ratio: var(--ms-w) / var(--ms-h); box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
     }
 
-    @supports not (aspect-ratio: 1 / 1) {
-      .mini-slider {
-        height: auto;
-      }
-      .mini-slider::before {
-        content: "";
-        display: block;
-        padding-top: calc(var(--ms-h) / var(--ms-w) * 100%);
-      }
-      .mini-slider > .ms-track {
-        position: absolute;
-        inset: 0;
-      }
-    }
-
-    .ms-track {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      transition: transform .45s ease;
-      will-change: transform;
-    }
-
-    .ms-slide {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 100%;
-    }
-
-    .ms-slide a, .ms-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .ms-slide img {
-      object-fit: cover;
-      object-position: center center;
-      image-rendering: -webkit-optimize-contrast;
-    }
+    .ms-track { width: 100%; height: 100%; display: flex; transition: transform .45s ease; will-change: transform; }
+    .ms-slide { flex: 0 0 100%; width: 100%; height: 100%; }
+    .ms-slide a, .ms-slide img { display: block; width: 100%; height: 100%; }
+    .ms-slide img { object-fit: cover; object-position: center center; }
 
     .ms-dots {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 10px;
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      align-items: center;
-      pointer-events: auto;
+      position: absolute; left: 0; right: 0; bottom: 10px; display: flex; gap: 8px; justify-content: center; align-items: center;
     }
-
     .ms-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .45);
-      border: 1px solid rgba(0, 0, 0, .25);
-      box-shadow: 0 0 6px rgba(255, 255, 255, .25);
-      cursor: pointer;
-      transition: transform .2s, background .2s, box-shadow .2s;
+      width: 10px; height: 10px; border-radius: 999px; background: rgba(255, 255, 255, .45);
+      border: 1px solid rgba(0, 0, 0, .25); cursor: pointer; transition: transform .2s, background .2s;
     }
+    .ms-dot.active { background: var(--gold); transform: scale(1.25); box-shadow: 0 0 12px rgba(244, 197, 66, .8); }
 
-    .ms-dot.active {
-      background: var(--gold);
-      transform: scale(1.25);
-      box-shadow: 0 0 12px rgba(244, 197, 66, .8);
-    }
-
-    /* ===== Slider Section Decorator ===== */
-    .slider-section {
-      margin: 24px 0;
-      text-align: center;
-    }
-
+    .slider-section { margin: 24px 0; text-align: center; }
     .slider-title {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: .5px;
-      margin-bottom: 12px;
-      color: var(--gold);
-      text-shadow: 0 0 12px rgba(244, 197, 66, .6), 0 0 24px rgba(244, 197, 66, .4);
-      text-align: center;
-      line-height: 1.3;
-      white-space: normal;
+      font-size: 20px; font-weight: 800; letter-spacing: .5px; margin-bottom: 12px; color: var(--gold);
+      text-shadow: 0 0 12px rgba(244, 197, 66, .6); text-align: center;
     }
 
-    @media (max-width: 560px) {
-      .slider-title {
-        font-size: 18px;
-        display: block;
-      }
-    }
-
-    .slider-box {
-      position: relative;
-      padding: 6px;
-      border-radius: 16px;
-      background: #111;
-      overflow: hidden;
-    }
-
+    .slider-box { position: relative; padding: 6px; border-radius: 16px; background: #111; overflow: hidden; }
     .slider-box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 3px;
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 3px;
       background: linear-gradient(90deg, #f4c542, #fff, #d6a400, #f4c542, #fff, #d6a400);
-      background-size: 400% 400%;
-      animation: neonRun 4s linear infinite;
+      background-size: 400% 400%; animation: neonRun 4s linear infinite;
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      -webkit-mask-composite: xor; mask-composite: exclude;
     }
 
-    @keyframes neonRun {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes neonRun { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-    /* ===== Result Cards Shimmer Glow ===== */
-    .section .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 18px;
-    }
-
-    .section .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(90deg, #f4c542, #ffffff, #d6a400, #f4c542, #ffffff, #d6a400);
-      background-size: 400% 400%;
-      animation: sbjNeon 4s linear infinite;
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    /* ===== Result Banner message ===== */
     .result-msg {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      text-align: center;
-      font-weight: 800;
-      color: var(--gold);
-      margin: 12px 0 16px;
-      text-shadow: 0 0 10px rgba(244, 197, 66, .45);
-      letter-spacing: .2px;
+      display: flex; align-items: center; justify-content: center; gap: 4px; text-align: center;
+      font-weight: 800; color: var(--gold); margin: 12px 0 16px; text-shadow: 0 0 10px rgba(244, 197, 66, .45);
     }
-
-    .result-msg .star {
-      font-size: 18px;
-      animation: twinkle 1.6s ease-in-out infinite;
-      margin: 0 2px;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: .5; transform: scale(.95); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-
-    @media (max-width: 480px) {
-      .result-msg {
-        gap: 2px;
-        font-size: 14px;
-        line-height: 1.3;
-      }
-      .result-msg .star {
-        font-size: 15px;
-        margin: 0 1px;
-      }
-    }
-
-    /* ===== Ripple Ink Visual effect ===== */
-    .ripple-ink {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ripple-ink:active::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(150px 150px at var(--rx, 50%) var(--ry, 50%), rgba(255, 255, 255, .35), transparent 60%);
-      animation: sbjRipple .6s ease forwards;
-    }
-
-    @keyframes sbjRipple {
-      from { opacity: .9; }
-      to { opacity: 0; }
-    }
-
-    .ripple-ink:active {
-      --rx: 50%;
-      --ry: 50%;
-    }
-
-    /* Neon Text Flicker */
-    .neon-flicker {
-      text-shadow: 0 0 8px rgba(244, 197, 66, .35), 0 0 16px rgba(244, 197, 66, .25);
-      animation: neonFlicker 3.8s ease-in-out infinite;
-    }
-
-    @keyframes neonFlicker {
-      0%, 10%, 22%, 100% { opacity: 1; filter: brightness(1); }
-      12% { opacity: .85; filter: brightness(1.1); }
-      20% { opacity: .6; filter: brightness(1.25); }
-    }
-
-    /* Sparkle Background */
-    .sparkle-bg {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sparkle-bg::before {
-      content: "";
-      position: absolute;
-      inset: -20% -10%;
-      background: radial-gradient(3px 3px at 10% 20%, rgba(255, 255, 255, .35), transparent 60%),
-                  radial-gradient(2px 2px at 70% 30%, rgba(244, 197, 66, .45), transparent 60%),
-                  radial-gradient(2px 2px at 30% 80%, rgba(255, 255, 255, .35), transparent 60%),
-                  radial-gradient(3px 3px at 90% 60%, rgba(244, 197, 66, .45), transparent 60%);
-      animation: sparkleDrift 8s linear infinite alternate;
-      filter: blur(.3px);
-      pointer-events: none;
-    }
-
-    @keyframes sparkleDrift {
-      0% { transform: translateY(-4%) translateX(-2%); opacity: .8; }
-      100% { transform: translateY(4%) translateX(2%); opacity: 1; }
-    }
-
-    /* Keyboard Focus Rings */
-    :where(button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-      box-shadow: 0 0 0 4px rgba(244, 197, 66, .18);
-    }
-
-    @keyframes sbjNeon {
-      0% { background-position: 0 50% }
-      100% { background-position: 400% 50% }
-    }
-
-    /* ===== SBJX — Extra Classes ===== */
-    .sbjx-hidden { display: none !important; }
-    .sbjx-visually-hidden {
-      position: absolute !important;
-      width: 1px; height: 1px; margin: -1px; padding: 0;
-      border: 0; clip: rect(0 0 0 0); overflow: hidden; white-space: nowrap;
-    }
-    .sbjx-stack > * + * { margin-top: var(--gap, 12px); }
-    .sbjx-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
-      margin: 12px 0;
-    }
-
-    .sbjx-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
-      border: 1px solid rgba(255, 255, 255, .14);
-      color: var(--sbjx-txt);
-      font-weight: 700;
-      letter-spacing: .2px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-    }
-
-    .sbjx-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 0;
-      border-radius: 14px;
-      padding: 12px 16px;
-      cursor: pointer;
-      font-weight: 800;
-      letter-spacing: .3px;
-      text-decoration: none;
-      user-select: none;
-      transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
-    }
-
-    .sbjx-btn:active {
-      transform: translateY(1px) scale(.99);
-    }
-
-    .sbjx-btn-outline {
-      background: linear-gradient(#0c0c12, #0c0c12) padding-box,
-                  linear-gradient(180deg, var(--sbjx-gold), var(--sbjx-gold2)) border-box;
-      border: 1px solid transparent;
-      color: var(--sbjx-txt);
-    }
-
-    .sbjx-btn-outline:hover {
-      box-shadow: var(--sbjx-glow);
-    }
-
-    .sbjx-btn-ghost {
-      background: rgba(255, 255, 255, .03);
-      border: 1px solid rgba(255, 255, 255, .12);
-      color: var(--sbjx-txt);
-    }
-
-    .sbjx-btn-ghost:hover {
-      filter: brightness(1.05);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
-    }
-
-    .sbjx-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .025));
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .03);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .sbjx-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, .4);
-    }
-
-    .sbjx-gold-border {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .sbjx-gold-border::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(90deg, var(--sbjx-gold), #fff, var(--sbjx-gold2), var(--sbjx-gold), #fff, var(--sbjx-gold2));
-      background-size: 400% 400%;
-      animation: sbjxNeon 4s linear infinite;
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    @keyframes sbjxNeon {
-      0% { background-position: 0 50% }
-      100% { background-position: 400% 50% }
-    }
-
-    .sbjx-text-shimmer {
-      background: linear-gradient(180deg, #fff, #c9c9d6 55%, #9a9ab0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      background-size: 200% auto;
-      animation: sbjxText 8s linear infinite;
-      text-shadow: 0 0 10px rgba(244, 197, 66, .08);
-    }
-
-    @keyframes sbjxText {
-      0% { background-position: 0% center }
-      100% { background-position: 200% center }
-    }
-
-    .sbjx-twinkle {
-      position: relative;
-    }
-
-    .sbjx-twinkle::after {
-      content: "✨";
-      position: absolute;
-      right: -18px;
-      top: -6px;
-      font-size: 14px;
-      animation: sbjxTwinkle 1.8s ease-in-out infinite;
-    }
-
-    @keyframes sbjxTwinkle {
-      0%, 100% { opacity: .5; transform: scale(.9) }
-      50% { opacity: 1; transform: scale(1) }
-    }
-
-    .sbjx-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 10px;
-    }
-
-    .sbjx-table thead th {
-      background: #15151f;
-      color: var(--sbjx-gold);
-      padding: 12px;
-      text-align: center;
-    }
-
-    .sbjx-table tbody tr {
-      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .025));
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .03);
-      transition: transform .16s ease, background .16s ease;
-    }
-
-    .sbjx-table tbody tr:hover {
-      transform: translateY(-1px);
-    }
-
-    .sbjx-table td {
-      padding: 14px;
-      text-align: center;
-    }
-
-    [data-sbjx-scroll]::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    [data-sbjx-scroll]::-webkit-scrollbar-track {
-      background: #0b0b0f;
-    }
-
-    [data-sbjx-scroll]::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--sbjx-gold), var(--sbjx-gold2));
-      border-radius: 999px;
-      border: 2px solid #0b0b0f;
-    }
-
-    /* ===== Safe Area Bottom Mapping ===== */
-    .floating-buttons {
-      bottom: calc(72px + var(--safe-bottom));
-    }
-
-    /* ===== Reduced Motion ===== */
-    @media (prefers-reduced-motion: reduce) {
-      *, .btn, .copy-btn, .ms-track, .popup-img, .result-msg .star,
-      .panel::before, .section .card::before, .table tbody tr::before,
-      .sbjx-text-shimmer, .sbjx-twinkle::after, .sbjx-gold-border::before {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Fallback CSS Grid/Flexbox/Clamp for older browsers */
-    @supports not (gap: 10px) {
-      .hero > * { margin: 6px 6px 0 0; }
-      .searchbar > * { margin-bottom: 10px; }
-    }
-
-    @supports not (font-size: clamp(1px, 2px, 3px)) {
-      .title { font-size: 26px; }
-      @media (min-width: 480px) { .title { font-size: 30px; } }
-      @media (min-width: 720px) { .title { font-size: 34px; } }
-    }
+    .result-msg .star { font-size: 18px; animation: twinkle 1.6s ease-in-out infinite; margin: 0 2px; }
+    @keyframes twinkle { 0%, 100% { opacity: .5; transform: scale(.95); } 50% { opacity: 1; transform: scale(1); } }
 
     /* ===== Bottom Nav Mobile Only ===== */
     .sbj-bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      min-height: 58px;
-      height: auto;
-      background: rgba(15, 15, 23, 0.94);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, .08);
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      z-index: 99999;
-      padding-top: 6px;
-      padding-bottom: calc(6px + env(safe-area-inset-bottom));
+      position: fixed; left: 0; right: 0; bottom: 0; min-height: 58px; height: auto;
+      background: rgba(15, 15, 23, 0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, .08); display: grid; grid-template-columns: repeat(6, 1fr);
+      z-index: 99999; padding-top: 6px; padding-bottom: calc(6px + env(safe-area-inset-bottom));
       box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
     }
 
     .sbj-nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 2px;
-      gap: 3px;
-      text-decoration: none;
-      background: none;
-      border: 0;
-      cursor: pointer;
-      width: 100%;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 4px 2px; gap: 3px; text-decoration: none; background: none; border: 0; cursor: pointer; width: 100%;
     }
-
-    .sbj-nav-item:active {
-      transform: scale(.92);
-      opacity: 0.85;
-    }
-
-    .sbj-nav-item .icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 24px;
-      font-size: 18px;
-      line-height: 1;
-      margin: 0;
-    }
-
+    .sbj-nav-item:active { transform: scale(.92); opacity: 0.85; }
+    .sbj-nav-item .icon { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 18px; }
     .sbj-nav-item.wa { color: #25d366; }
     .sbj-nav-item.tg { color: #2aabee; }
     .sbj-nav-item.pola { color: #4dd2ff; }
     .sbj-nav-item.livechat { color: #ff5c7a; }
+    .sbj-nav-item.promo { color: #FFD700; text-shadow: 0 0 8px rgba(255, 204, 51, .45); }
+    .sbj-nav-item.rtp { color: #BF00FF; }
 
-    /* Desktop (mouse/trackpad): hide bottom nav */
-    @media (hover: hover) and (pointer: fine) {
-      .sbj-bottom-nav { display: none !important; }
+    .sbj-nav-item .icon-img { display: flex; align-items: center; justify-content: center; height: 24px; width: 100%; }
+    .sbj-nav-item .icon-img img { width: 20px; height: 20px; border-radius: 5px; object-fit: cover; }
+
+    /* Ditingkatkan menjadi 11px agar lebih mudah dibaca */
+    .sbj-nav-item .label {
+      display: block; font-size: 11px; font-weight: 800; letter-spacing: -0.1px; line-height: 1.2; white-space: nowrap;
     }
 
-    /* Mobile (touch): show bottom nav */
-    @media (hover: none) and (pointer: coarse) {
-      .sbj-bottom-nav { display: grid !important; }
-    }
+    @media (hover: hover) and (pointer: fine) { .sbj-bottom-nav { display: none !important; } }
+    @media (hover: none) and (pointer: coarse) { .sbj-bottom-nav { display: grid !important; } }
 
-    body {
-      padding-bottom: calc(60px + env(safe-area-inset-bottom));
-    }
-
-    /* Mobile Floating adjustments */
     @media (max-width: 767px) {
-      .floating-buttons {
-        display: flex !important;
-        bottom: calc(60px + env(safe-area-inset-bottom) + 12px) !important;
-      }
-      .floating-buttons .float-wa,
-      .floating-buttons .float-tg {
+      .floating-buttons { display: flex !important; bottom: calc(60px + env(safe-area-inset-bottom) + 12px) !important; }
+      .floating-buttons .float-wa, .floating-buttons .float-tg { display: none !important; }
+      
+      /* Menyembunyikan widget eksternal secara efektif tanpa merusak JS CPU */
+      #chat-widget-container, iframe[src*="livechat"], [id*="onesignal"], [class*="onesignal"] {
         display: none !important;
       }
     }
 
-    .sbj-nav-item.promo {
-      color: #FFD700;
-      text-shadow: 0 0 8px rgba(255, 204, 51, .45);
+    /* OpenChrome Modal */
+    .openchrome-backdrop {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, .6); display: none; align-items: center; justify-content: center; z-index: 99999;
     }
-
-    .sbj-nav-item .icon-img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 24px;
-      width: 100%;
-      margin: 0;
+    .openchrome-card {
+      width: min(92vw, 420px); background: #111; color: #fff; border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
     }
-
-    .sbj-nav-item .icon-img img {
-      width: 20px;
-      height: 20px;
-      border-radius: 5px;
-      object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+    .openchrome-card h3 { margin: 0 0 8px; font-size: 16px; }
+    .openchrome-card p { margin: 0 0 14px; font-size: 13px; line-height: 1.35; color: rgba(255, 255, 255, .85); }
+    .openchrome-actions { display: flex; gap: 10px; }
+    .openchrome-btn {
+      flex: 1; border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(255, 255, 255, .14);
+      background: #1d1d1d; color: #fff; font-weight: 600; cursor: pointer;
     }
-
-    .sbj-nav-item.rtp {
-      color: #BF00FF;
-    }
-
-    .sbj-nav-item .label {
-      display: block;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: -0.1px;
-      line-height: 1.2;
-      white-space: nowrap;
-      margin: 0;
-    }
-
-    @media (max-width: 360px) {
-      .sbj-nav-item .label {
-        font-size: 8.5px;
-        letter-spacing: -0.2px;
-      }
-    }
-
-    /* ===== FLOATING TEXT STYLES ===== */
-    .float-btn.with-text {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-right: 6px;
-      text-decoration: none !important;
-    }
-
-    .float-btn.with-text .float-text {
-      font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .2px;
-      white-space: nowrap;
-      text-decoration: none !important;
-    }
-
-    .float-wa.with-text .float-text {
-      color: #25d366;
-      text-shadow: 0 0 6px rgba(37, 211, 102, .45);
-    }
-
-    .float-tg.with-text .float-text {
-      color: #2aabee;
-      text-shadow: 0 0 6px rgba(42, 171, 238, .45);
-    }
-
-    @media (max-width: 767px) {
-      .float-btn.with-text .float-text {
-        font-size: 10.5px;
-      }
-    }
+    .openchrome-btn.primary { background: #2563eb; border-color: #2563eb; }
+    .openchrome-mini { margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, .75); }
   </style>
 
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -1448,21 +654,20 @@
     <p class="subtitle">Masukkan <b>USER ID</b> aktif kamu. Jika cocok, sistem akan menampilkan semua kupon luckyspin kamu.✨</p>
 
     <div class="panel">
-      <div class="searchbar">
-        <input id="q" class="input" placeholder="Contoh: sempakgacor87" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" />
-        <button id="go" class="btn">
+      <!-- Menggunakan Tag Form agar Pencarian otomatis support Enter di HP/PC -->
+      <form id="searchForm" class="searchbar">
+        <input id="q" class="input" placeholder="Contoh: sempakgacor87" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" required />
+        <button type="submit" id="go" class="btn">
           <span class="label">🔎 Cari</span>
           <span class="dot"></span>
         </button>
-      </div>
+      </form>
       <div class="hint">Tekan <b>Enter</b> atau klik <b>Cari</b>.</div>
     </div>
 
     <!-- SLIDER + TITLE + BOX -->
     <div class="slider-section">
-      <div class="slider-title">
-        BONUS MENARIK KHUSUS MEMBER SETIA
-      </div>
+      <div class="slider-title">BONUS MENARIK KHUSUS MEMBER SETIA</div>
       <div class="slider-box">
         <div class="mini-slider" id="miniSlider" aria-label="Promo Slider">
           <div class="ms-track" id="msTrack"></div>
@@ -1477,10 +682,86 @@
     <footer>© 2015 - <span id="y"></span> Copyright SLOTBANGJAGO. All Rights Reserved.</footer>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- core system logic -->
+  <!-- Popup Promo Structure -->
+  <div id="promoModal" class="modal-backdrop" aria-hidden="true">
+    <div class="popup-wrap" role="dialog" aria-label="Promo">
+      <button class="popup-close" id="popupClose" aria-label="Tutup">✕</button>
+      <img id="popupImg" class="popup-img" alt="Promo" />
+      <div class="popup-dots">
+        <span class="popup-dot"></span>
+        <span class="popup-dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <a href="https://klikblg.com/wa-sbj" target="_blank" rel="noopener" class="float-btn float-wa with-text">
+      <img src="https://cdn.jsdelivr.net/gh/simen99/danakaget-papanataslot1/assets/whats-app.gif" alt="WhatsApp" />
+      <span class="float-text">Wa Ofc</span>
+    </a>
+
+    <a href="https://klikblg.com/tele-sbj" target="_blank" rel="noopener" class="float-btn float-tg with-text">
+      <img src="https://cdn.jsdelivr.net/gh/simen99/danakaget-papanataslot1/assets/telegram-gif.gif" alt="Telegram" />
+      <span class="float-text">Tele Ofc</span>
+    </a>
+  </div>
+
+  <!-- Open in Chrome Modal (Android) -->
+  <div id="openChromeBackdrop" class="openchrome-backdrop" role="dialog" aria-modal="true">
+    <div class="openchrome-card">
+      <h3>Buka di Chrome untuk aktifkan notifikasi</h3>
+      <p>Anda sedang membuka link dari aplikasi (WhatsApp/Media Sosial). Untuk subscribe notifikasi OneSignal, buka halaman ini di Chrome.</p>
+
+      <div class="openchrome-actions">
+        <button id="btnLater" class="openchrome-btn">Nanti</button>
+        <button id="btnOpenChrome" class="openchrome-btn primary">Buka di Chrome</button>
+      </div>
+
+      <div class="openchrome-actions" style="margin-top:10px;">
+        <button id="btnCopyLink" class="openchrome-btn">Salin Link</button>
+      </div>
+
+      <div class="openchrome-mini" id="openChromeHint"></div>
+    </div>
+  </div>
+
+  <!-- Bottom Mobile Navigation -->
+  <nav class="sbj-bottom-nav">
+    <a href="https://klikblg.com/wa-sbj" target="_blank" rel="noopener" class="sbj-nav-item wa">
+      <span class="icon">💬</span>
+      <span class="label">Wa Ofc</span>
+    </a>
+    <a href="https://klikblg.com/tele-sbj" target="_blank" rel="noopener" class="sbj-nav-item tg">
+      <span class="icon">✈️</span>
+      <span class="label">Tele Ofc</span>
+    </a>
+    <a href="https://klikblg.com/rtp-slotbangjago" target="_blank" rel="noopener" class="sbj-nav-item rtp">
+      <span class="icon-img">
+        <img src="https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/BUTTON%20RTP%20SBJ.jpg" alt="RTP Gacor" />
+      </span>
+      <span class="label">Rtp Gacor</span>
+    </a>
+    <a href="https://slotbangjagoalt21.com/mobile/promo" target="_blank" rel="noopener" class="sbj-nav-item promo">
+      <span class="icon">🎁</span>
+      <span class="label">Promo Situs</span>
+    </a>
+    <a href="https://klikblg.com/pola-sbj" target="_blank" rel="noopener" class="sbj-nav-item pola">
+      <span class="icon">📊</span>
+      <span class="label">Pola Gacor</span>
+    </a>
+    <a href="https://direct.lc.chat/11798511/" target="_blank" rel="noopener" class="sbj-nav-item livechat">
+      <span class="icon">🎧</span>
+      <span class="label">Live Chat</span>
+    </a>
+  </nav>
+
+  <!-- External Library JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Clean Unified Core Logic Script -->
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw1T0uc9aC6caI7HJLOyrbQyfoA2X4yhEMW7jA_0EhOnqwQZFHseBdzzaGJXagMXwAt/exec";
 
@@ -1509,10 +790,6 @@
     };
 
     $("#y").textContent = new Date().getFullYear();
-    $("#q").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") search();
-    });
-    $("#go").addEventListener("click", () => search());
 
     let busy = false;
 
@@ -1537,6 +814,12 @@
       }
     }
 
+    // Menggunakan Form Event Listener yang ringkas & efisien
+    $("#searchForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      search();
+    });
+
     async function search() {
       if (busy) return;
       const q = $("#q").value.trim();
@@ -1545,7 +828,6 @@
       if (!WEB_APP_URL.includes("http")) { toast("WEB_APP_URL belum diisi", false); return; }
 
       busy = true;
-
       const btn = $("#go");
       btn.disabled = true;
       const oldLabel = btn.innerHTML;
@@ -1659,51 +941,8 @@
         }, 300);
       }).catch(() => toast("Gagal copy", false));
     });
-  </script>
 
-  <!-- Popup Promo Structure -->
-  <div id="promoModal" class="modal-backdrop" aria-hidden="true">
-    <div class="popup-wrap" role="dialog" aria-label="Promo">
-      <button class="popup-close" id="popupClose" aria-label="Tutup">✕</button>
-      <img id="popupImg" class="popup-img" alt="Promo" />
-      <div class="popup-dots">
-        <span class="popup-dot"></span>
-        <span class="popup-dot"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sizing and Auto-Scale script of Popups -->
-  <script>
-    const POPUP_W = 600, POPUP_H = 347, POPUP_RATIO = POPUP_H / POPUP_W;
-
-    function sizePopup() {
-      const wrap = document.querySelector('.popup-wrap');
-      if (!wrap) return;
-
-      const vw = Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth);
-      const vh = Math.min(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
-
-      let maxW = Math.min(POPUP_W, vw * 0.92);
-      let maxH = Math.min(POPUP_H, vh * 0.80);
-
-      let w = maxW;
-      let h = w * POPUP_RATIO;
-      if (h > maxH) {
-        h = maxH;
-        w = h / POPUP_RATIO;
-      }
-
-      wrap.style.width = Math.round(w) + 'px';
-      wrap.style.height = Math.round(h) + 'px';
-    }
-
-    document.addEventListener('DOMContentLoaded', sizePopup);
-    window.addEventListener('resize', sizePopup);
-  </script>
-
-  <!-- Popup Promo Dynamic Logic -->
-  <script>
+    // ===== Popup Promo Logic =====
     const PROMO_IMAGES = [
       "https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/POPUP%20PROMO%20LS.jfif",
       "https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/POP%20UP%20ALL%20BONUS%201.jpg"
@@ -1734,7 +973,6 @@
       setActiveDot(idx);
       document.body.style.overflow = "hidden";
       modal.classList.add("open");
-      sizePopup();
       slideTimer = setInterval(() => { showImage(idx + 1); }, 4000);
     }
 
@@ -1763,11 +1001,10 @@
       });
 
       openPromo();
+      $("#q").focus();
     });
-  </script>
 
-  <!-- Mini Slider Logic -->
-  <script>
+    // ===== Mini Slider Logic =====
     const MINI_SLIDES = [
       "https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/BONUS%20VIP%20SLIDER.jpg",
       "https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/BONUS%20%20JEJER%20SLIDER.jpg",
@@ -1793,16 +1030,16 @@
       });
 
       const dots = Array.from(dotsBox.children);
-      let idx = 0, timer = null;
+      let sliderIdx = 0, sliderTimer = null;
 
       function goTo(i) {
-        idx = (i + MINI_SLIDES.length) % MINI_SLIDES.length;
-        track.style.transform = `translateX(${-idx * 100}%)`;
-        dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+        sliderIdx = (i + MINI_SLIDES.length) % MINI_SLIDES.length;
+        track.style.transform = `translateX(${-sliderIdx * 100}%)`;
+        dots.forEach((d, di) => d.classList.toggle('active', di === sliderIdx));
       }
-      function next() { goTo(idx + 1); }
-      function play() { stop(); timer = setInterval(next, 6000); }
-      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function next() { goTo(sliderIdx + 1); }
+      function play() { stop(); sliderTimer = setInterval(next, 6000); }
+      function stop() { if (sliderTimer) { clearInterval(sliderTimer); sliderTimer = null; } }
 
       dots.forEach((d, di) => d.addEventListener('click', () => { goTo(di); play(); }));
 
@@ -1822,16 +1059,16 @@
         if (!dragging) return;
         deltaX = e.touches[0].clientX - startX;
         track.style.transition = 'none';
-        track.style.transform = `translateX(${(-idx * 100) + (deltaX / slider.offsetWidth) * 100}%)`;
+        track.style.transform = `translateX(${(-sliderIdx * 100) + (deltaX / slider.offsetWidth) * 100}%)`;
       }, { passive: true });
 
       function endSwipe() {
         if (!dragging) return;
         track.style.transition = '';
         if (Math.abs(deltaX) > slider.offsetWidth * 0.18) { 
-          deltaX < 0 ? next() : goTo(idx - 1); 
+          deltaX < 0 ? next() : goTo(sliderIdx - 1); 
         } else { 
-          goTo(idx); 
+          goTo(sliderIdx); 
         }
         dragging = false; 
         play();
@@ -1842,139 +1079,8 @@
       goTo(0); 
       play();
     })();
-  </script>
 
-  <!-- Older browsers polyfill -->
-  <script>
-    (function() {
-      var test = 'objectFit' in document.documentElement.style;
-      if (test) return;
-
-      var list = document.querySelectorAll('.ms-slide img');
-      Array.prototype.forEach.call(list, function(img) {
-        var src = img.getAttribute('src');
-        var holder = img.parentNode;
-        holder.style.backgroundImage = 'url("' + src + '")';
-        holder.style.backgroundSize = 'cover';
-        holder.style.backgroundRepeat = 'no-repeat';
-        holder.style.backgroundPosition = 'center';
-        img.style.opacity = '0';
-      });
-    })();
-  </script>
-  
-  <!-- LiveChat integration -->
-  <script>
-    window.__lc = window.__lc || {};
-    window.__lc.license = 11798511;
-    window.__lc.integration_name = "manual_channels";
-    window.__lc.product_name = "livechat";
-
-    window.__lc.on_after_load = function () {
-      if (window.innerWidth <= 767 && window.LiveChatWidget && LiveChatWidget.call) {
-        LiveChatWidget.call("hide");
-      }
-    };
-
-    ;(function(n, t, c) {
-      function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) }
-      var e = {
-        _q: [], _h: null, _v: "2.0",
-        on: function() { i(["on", c.call(arguments)]) },
-        once: function() { i(["once", c.call(arguments)]) },
-        off: function() { i(["off", c.call(arguments)]) },
-        get: function() { 
-          if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); 
-          return i(["get", c.call(arguments)]) 
-        },
-        call: function() { i(["call", c.call(arguments)]) },
-        init: function() {
-          var n = t.createElement("script");
-          n.async = !0;
-          n.type = "text/javascript";
-          n.src = "https://cdn.livechatinc.com/tracking.js";
-          t.head.appendChild(n)
-        }
-      };
-      !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e
-    }(window, document, [].slice))
-  </script>
-
-  <!-- Keyboard slash '/' trigger -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => $("#q").focus());
-    document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && !e.target.closest('input,textarea')) {
-        e.preventDefault(); 
-        $("#q").focus();
-      }
-    });
-  </script>
-  
-  <noscript>
-    <a href="https://www.livechat.com/chat-with/11798511/" rel="nofollow">Chat with us</a>,
-    powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
-  </noscript>
-
-  <!-- Floating Buttons -->
-  <div class="floating-buttons">
-    <a href="https://klikblg.com/wa-sbj" target="_blank" rel="noopener" class="float-btn float-wa with-text">
-      <img src="https://cdn.jsdelivr.net/gh/simen99/danakaget-papanataslot1/assets/whats-app.gif" alt="WhatsApp" />
-      <span class="float-text">Wa Ofc</span>
-    </a>
-
-    <a href="https://klikblg.com/tele-sbj" target="_blank" rel="noopener" class="float-btn float-tg with-text">
-      <img src="https://cdn.jsdelivr.net/gh/simen99/danakaget-papanataslot1/assets/telegram-gif.gif" alt="Telegram" />
-      <span class="float-text">Tele Ofc</span>
-    </a>
-  </div>
-
-  <!-- In-app browser detector + Open in Chrome modal (Android) -->
-  <style>
-    .openchrome-backdrop {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, .6);
-      display: none; align-items: center; justify-content: center;
-      z-index: 99999;
-    }
-    .openchrome-card {
-      width: min(92vw, 420px); background: #111; color: #fff;
-      border: 1px solid rgba(255, 255, 255, .12);
-      border-radius: 14px; padding: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    .openchrome-card h3 { margin: 0 0 8px; font-size: 16px; }
-    .openchrome-card p { margin: 0 0 14px; font-size: 13px; line-height: 1.35; color: rgba(255, 255, 255, .85); }
-    .openchrome-actions { display: flex; gap: 10px; }
-    .openchrome-btn {
-      flex: 1; border-radius: 10px; padding: 12px 10px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: #1d1d1d; color: #fff; font-weight: 600;
-      cursor: pointer;
-    }
-    .openchrome-btn.primary { background: #2563eb; border-color: #2563eb; }
-    .openchrome-mini { margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, .75); }
-  </style>
-
-  <div id="openChromeBackdrop" class="openchrome-backdrop" role="dialog" aria-modal="true">
-    <div class="openchrome-card">
-      <h3>Buka di Chrome untuk aktifkan notifikasi</h3>
-      <p>Anda sedang membuka link dari aplikasi (WhatsApp/Media Sosial). Untuk subscribe notifikasi OneSignal, buka halaman ini di Chrome.</p>
-
-      <div class="openchrome-actions">
-        <button id="btnLater" class="openchrome-btn">Nanti</button>
-        <button id="btnOpenChrome" class="openchrome-btn primary">Buka di Chrome</button>
-      </div>
-
-      <div class="openchrome-actions" style="margin-top:10px;">
-        <button id="btnCopyLink" class="openchrome-btn">Salin Link</button>
-      </div>
-
-      <div class="openchrome-mini" id="openChromeHint"></div>
-    </div>
-  </div>
-
-  <script>
+    // ===== In-App Browser Detector (Chrome Intent) =====
     (function () {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isInApp = /WhatsApp|Instagram|FBAN|FBAV|FB_IAB|Messenger|Line|TikTok|Twitter|Snapchat/i.test(ua);
@@ -2009,12 +1115,7 @@
           btnCopyLink.textContent = "Tersalin";
           setTimeout(() => (btnCopyLink.textContent = "Salin Link"), 1200);
         } catch (e) {
-          const tmp = document.createElement("textarea");
-          tmp.value = window.location.href;
-          document.body.appendChild(tmp);
-          tmp.select();
-          document.execCommand("copy");
-          document.body.removeChild(tmp);
+          copyText(window.location.href);
           btnCopyLink.textContent = "Tersalin";
           setTimeout(() => (btnCopyLink.textContent = "Salin Link"), 1200);
         }
@@ -2039,121 +1140,52 @@
         window.location.href = href;
       });
     })();
+
+    // Shortcut Keyboard Slash '/'
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !e.target.closest('input,textarea')) {
+        e.preventDefault(); 
+        $("#q").focus();
+      }
+    });
   </script>
 
-  <!-- ===== Bottom Mobile Navigation ===== -->
-  <nav class="sbj-bottom-nav">
-    <a href="https://klikblg.com/wa-sbj" target="_blank" rel="noopener" class="sbj-nav-item wa">
-      <span class="icon">💬</span>
-      <span class="label">Wa Ofc</span>
-    </a>
-
-    <a href="https://klikblg.com/tele-sbj" target="_blank" rel="noopener" class="sbj-nav-item tg">
-      <span class="icon">✈️</span>
-      <span class="label">Tele Ofc</span>
-    </a>
-
-    <!-- RTP GACOR -->
-    <a href="https://klikblg.com/rtp-slotbangjago" target="_blank" rel="noopener" class="sbj-nav-item rtp">
-      <span class="icon-img">
-        <img src="https://raw.githubusercontent.com/simen99/sayman-sbjkupon1/refs/heads/main/BUTTON%20RTP%20SBJ.jpg" alt="RTP Gacor" />
-      </span>
-      <span class="label">Rtp Gacor</span>
-    </a>
-
-    <!-- PROMO SITE -->
-    <a href="https://slotbangjagoalt21.com/mobile/promo" target="_blank" rel="noopener" class="sbj-nav-item promo">
-      <span class="icon">🎁</span>
-      <span class="label">Promo Situs</span>
-    </a>
-
-    <a href="https://klikblg.com/pola-sbj" target="_blank" rel="noopener" class="sbj-nav-item pola">
-      <span class="icon">📊</span>
-      <span class="label">Pola Gacor</span>
-    </a>
-
-    <a href="https://direct.lc.chat/11798511/" target="_blank" rel="noopener" class="sbj-nav-item livechat">
-      <span class="icon">🎧</span>
-      <span class="label">Live Chat</span>
-    </a>
-  </nav>
-
-  <!-- LiveChat System handlers -->
+  <!-- LiveChat Tracking Script (Disembunyikan di Mobile via CSS murni untuk menghemat CPU) -->
   <script>
-    function openLiveChat(tryCount = 0) {
-      if (window.LC_API && typeof window.LC_API.open_chat_window === "function") {
-        window.LC_API.open_chat_window();
-        return;
-      }
-      if (tryCount < 10) {
-        setTimeout(() => openLiveChat(tryCount + 1), 300);
-        return;
-      }
-      alert("Live Chat belum siap. Mohon coba lagi.");
-    }
-  </script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 11798511;
+    window.__lc.integration_name = "manual_channels";
+    window.__lc.product_name = "livechat";
 
-  <script>
-    (function() {
-      function hideLiveChatOnMobile() {
-        if (window.innerWidth <= 767 && window.LC_API && typeof LC_API.hide_chat_window === "function") {
-          LC_API.hide_chat_window();
+    ;(function(n, t, c) {
+      function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) }
+      var e = {
+        _q: [], _h: null, _v: "2.0",
+        on: function() { i(["on", c.call(arguments)]) },
+        once: function() { i(["once", c.call(arguments)]) },
+        off: function() { i(["off", c.call(arguments)]) },
+        get: function() { 
+          if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); 
+          return i(["get", c.call(arguments)]) 
+        },
+        call: function() { i(["call", c.call(arguments)]) },
+        init: function() {
+          var n = t.createElement("script");
+          n.async = !0;
+          n.type = "text/javascript";
+          n.src = "https://cdn.livechatinc.com/tracking.js";
+          t.head.appendChild(n)
         }
-      }
-
-      window.__lc = window.__lc || {};
-      window.__lc.on_after_load = function() {
-        hideLiveChatOnMobile();
       };
-
-      window.addEventListener("resize", hideLiveChatOnMobile);
-    })();
+      !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e
+    }(window, document, [].slice));
   </script>
 
-  <script>
-    (function() {
-      function hideLiveChatMobile() {
-        if (window.innerWidth <= 767 && window.LiveChatWidget && typeof LiveChatWidget.call === "function") {
-          LiveChatWidget.call("hide");
-        }
-      }
-
-      window.addEventListener("load", function() {
-        hideLiveChatMobile();
-        if (window.LiveChatWidget && LiveChatWidget.on) {
-          LiveChatWidget.on("ready", hideLiveChatMobile);
-        }
-      });
-
-      window.addEventListener("resize", hideLiveChatMobile);
-    })();
-  </script>
-
-  <script>
-    (function() {
-      if (window.innerWidth > 767) return;
-
-      function killLiveChat() {
-        document.querySelectorAll(
-          'iframe[src*="livechat"], iframe[src*="lc.chat"], iframe[src*="livechatinc"]'
-        ).forEach(el => el.remove());
-
-        document.querySelectorAll(
-          '#chat-widget-container, .lc-compact, .lc-minimized, .lc-chat, [id*="livechat"]'
-        ).forEach(el => el.remove());
-      }
-
-      killLiveChat();
-      setInterval(killLiveChat, 800);
-    })();
-  </script>
-
-  <!-- OneSignal handler -->
+  <!-- OneSignal Handler (Bersih tanpa interval 800ms) -->
   <script>
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
       const isMobile = window.innerWidth <= 767;
-
       await OneSignal.init({
         appId: "00c33fd3-e850-4e1a-9773-a015271ec15e",
         promptOptions: isMobile ? {
@@ -2161,16 +1193,13 @@
           customlink: { enabled: false }
         } : undefined
       });
-
-      if (isMobile) {
-        setInterval(() => {
-          document.querySelectorAll(
-            '[id*="onesignal"], [class*="onesignal"], iframe[src*="onesignal"]'
-          ).forEach(el => el.remove());
-        }, 800);
-      }
     });
   </script>
-  
+
+  <noscript>
+    <a href="https://www.livechat.com/chat-with/11798511/" rel="nofollow">Chat with us</a>,
+    powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+  </noscript>
+
 </body>
 </html>
