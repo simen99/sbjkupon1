@@ -255,21 +255,22 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       color: #1a1a1a;
       border: 0;
-      border-radius: 999px;
-      padding: 8px 16px;
+      border-radius: 8px;
+      padding: 6px 14px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .25);
-      transition: transform .12s ease, filter .15s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+      transition: transform .12s ease, filter .15s ease;
+      white-space: nowrap;
     }
 
-    .copy-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
-    .copy-btn:active { transform: translateY(0) scale(.98); }
-    .copy-btn::before { content: "📋"; font-size: 14px; }
+    .copy-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .copy-btn:active { transform: translateY(0) scale(.96); }
+    .copy-btn::before { content: "📋"; font-size: 12px; }
 
     .toast {
       position: fixed;
@@ -337,8 +338,11 @@
     }
 
     .table tbody td .code-val {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
       font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: .5px;
     }
 
     .table tbody td:nth-child(1) { font-weight: 800; }
@@ -436,7 +440,6 @@
 
     .modal-backdrop.open { display: flex; }
 
-    /* CSS Aspect Ratio untuk Popup Promo (Sangat Efisien) */
     .popup-wrap {
       position: relative;
       width: min(92vw, 600px);
@@ -466,7 +469,7 @@
       .popup-dot { width: 12px; height: 12px; }
     }
 
-    /* ===== Mobile View Polish ===== */
+    /* ===== MOBILE RESULT FIX (SANGAT RAPI) ===== */
     @media (max-width: 560px) {
       .hero { justify-content: center; width: 100%; margin-bottom: 6px; }
       .badge { margin: 6px auto 8px; font-size: 15px; padding: 10px 20px; box-shadow: 0 0 18px rgba(244, 197, 66, .4); }
@@ -482,7 +485,16 @@
       .btn { width: 100%; }
 
       .table thead { display: none; }
-      .table tbody tr { display: block; padding: 12px; margin: 12px 0; position: relative; }
+      
+      /* Card hasil pencarian mobile */
+      .table tbody tr {
+        display: block;
+        padding: 14px 16px;
+        margin: 12px 0;
+        position: relative;
+        background: rgba(18, 18, 26, 0.95);
+        border-radius: 16px;
+      }
       .table tbody tr::before {
         content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 2px;
         background: linear-gradient(90deg, #f4c542, #ffffff, #d6a400, #f4c542, #ffffff, #d6a400);
@@ -490,15 +502,51 @@
         -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
       }
+      
+      /* Baris per item */
       .table tbody td {
-        display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; text-align: left;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+        padding: 10px 0 !important;
+        text-align: left !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
       }
+      .table tbody td:last-child {
+        border-bottom: 0 !important;
+      }
+
+      /* Label nama bidang (USER ID, KODE, TANGGAL) */
       .table tbody td::before {
-        content: attr(data-label); color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase;
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        flex: 0 0 auto;
       }
-      .table tbody td > * { flex: 1 1 auto; }
-      .code-val { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 800; }
-      .copy-btn { flex: 0 0 auto; padding: 8px 14px; }
+      
+      .table tbody td > * { flex: 0 0 auto; }
+      
+      /* Container Kode & Tombol Copy agar sejajar rapat */
+      .table tbody td .code-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .code-val {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 4px 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
     }
 
     .play-btn {
@@ -604,7 +652,6 @@
     .sbj-nav-item .icon-img { display: flex; align-items: center; justify-content: center; height: 24px; width: 100%; }
     .sbj-nav-item .icon-img img { width: 20px; height: 20px; border-radius: 5px; object-fit: cover; }
 
-    /* Ditingkatkan menjadi 11px agar lebih mudah dibaca */
     .sbj-nav-item .label {
       display: block; font-size: 11px; font-weight: 800; letter-spacing: -0.1px; line-height: 1.2; white-space: nowrap;
     }
@@ -615,11 +662,7 @@
     @media (max-width: 767px) {
       .floating-buttons { display: flex !important; bottom: calc(60px + env(safe-area-inset-bottom) + 12px) !important; }
       .floating-buttons .float-wa, .floating-buttons .float-tg { display: none !important; }
-      
-      /* Menyembunyikan widget eksternal secara efektif tanpa merusak JS CPU */
-      #chat-widget-container, iframe[src*="livechat"], [id*="onesignal"], [class*="onesignal"] {
-        display: none !important;
-      }
+      #chat-widget-container, iframe[src*="livechat"], [id*="onesignal"], [class*="onesignal"] { display: none !important; }
     }
 
     /* OpenChrome Modal */
@@ -654,7 +697,6 @@
     <p class="subtitle">Masukkan <b>USER ID</b> aktif kamu. Jika cocok, sistem akan menampilkan semua kupon luckyspin kamu.✨</p>
 
     <div class="panel">
-      <!-- Menggunakan Tag Form agar Pencarian otomatis support Enter di HP/PC -->
       <form id="searchForm" class="searchbar">
         <input id="q" class="input" placeholder="Contoh: sempakgacor87" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" required />
         <button type="submit" id="go" class="btn">
@@ -761,7 +803,6 @@
   <!-- External Library JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <!-- Clean Unified Core Logic Script -->
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw1T0uc9aC6caI7HJLOyrbQyfoA2X4yhEMW7jA_0EhOnqwQZFHseBdzzaGJXagMXwAt/exec";
 
@@ -814,7 +855,6 @@
       }
     }
 
-    // Menggunakan Form Event Listener yang ringkas & efisien
     $("#searchForm").addEventListener("submit", (e) => {
       e.preventDefault();
       search();
@@ -854,6 +894,7 @@
       }[m]));
     }
 
+    /* ===== PERBAIKAN STRUKTUR RENDER RESULT ===== */
     function renderResult(q, rows) {
       const resultBox = $("#result");
       resultBox.innerHTML = "";
@@ -891,12 +932,14 @@
         <tbody>
           ${rows.map(r => `
             <tr>
-              <td data-label="User ID">${escapeHTML(r[0])}</td>
+              <td data-label="User ID"><span>${escapeHTML(r[0])}</span></td>
               <td data-label="Kode">
-                <span class="code-val">${escapeHTML(r[1])}</span>
-                <button class="copy-btn" type="button" data-copy="${escapeHTML(r[1])}">Copy</button>
+                <div class="code-box">
+                  <span class="code-val">${escapeHTML(r[1])}</span>
+                  <button class="copy-btn" type="button" data-copy="${escapeHTML(r[1])}">Copy</button>
+                </div>
               </td>
-              <td data-label="Tanggal">${escapeHTML(fmtDate(r[2]))}</td>
+              <td data-label="Tanggal"><span>${escapeHTML(fmtDate(r[2]))}</span></td>
             </tr>
           `).join("")}
         </tbody>`;
@@ -933,7 +976,7 @@
       const txt = btn.dataset.copy;
       copyText(txt).then(() => {
         toast("Kode disalin");
-        btn.style.transform = "scale(1.15)";
+        btn.style.transform = "scale(1.1)";
         btn.style.background = "linear-gradient(180deg,#21d07a,#17a562)";
         setTimeout(() => {
           btn.style.transform = "scale(1)";
@@ -1141,7 +1184,6 @@
       });
     })();
 
-    // Shortcut Keyboard Slash '/'
     document.addEventListener('keydown', (e) => {
       if (e.key === '/' && !e.target.closest('input,textarea')) {
         e.preventDefault(); 
@@ -1150,7 +1192,7 @@
     });
   </script>
 
-  <!-- LiveChat Tracking Script (Disembunyikan di Mobile via CSS murni untuk menghemat CPU) -->
+  <!-- LiveChat Tracking Script -->
   <script>
     window.__lc = window.__lc || {};
     window.__lc.license = 11798511;
@@ -1181,7 +1223,7 @@
     }(window, document, [].slice));
   </script>
 
-  <!-- OneSignal Handler (Bersih tanpa interval 800ms) -->
+  <!-- OneSignal Handler -->
   <script>
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
