@@ -28,6 +28,29 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; }
 
+    /* Custom Scrollbar Premium */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0b0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ffffff;
+    }
+
+    /* Selection Highlight Styling */
+    ::selection {
+      background: var(--gold);
+      color: #0b0b0f;
+      font-weight: bold;
+    }
+
     body {
       margin: 0;
       font-family: Poppins, system-ui, Segoe UI, Roboto, Arial, sans-serif;
@@ -99,6 +122,8 @@
       padding: 16px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .03);
       overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     /* Border glow emas */
@@ -134,14 +159,15 @@
       padding: 14px 16px;
       font-size: 16px;
       outline: none;
-      transition: .2s border, .2s box-shadow, .2s transform;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: inset 0 2px 8px rgba(0, 0, 0, .35);
       min-height: 48px;
     }
 
     .input:focus {
-      border-color: rgba(244, 197, 66, .55);
-      box-shadow: var(--ring);
+      background: #13131c;
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(244, 197, 66, .35), inset 0 2px 4px rgba(0, 0, 0, .5);
       transform: translateY(-1px);
     }
 
@@ -249,6 +275,8 @@
       padding: 16px;
       margin-top: 12px;
       overflow-x: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .copy-btn {
@@ -328,6 +356,8 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .table tbody td {
@@ -550,13 +580,51 @@
     }
 
     .play-btn {
+      position: relative;
+      overflow: hidden;
       display: block; margin: 18px auto 0; max-width: 280px; text-align: center;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       color: #1a1a1a; font-weight: 800; font-size: 16px; padding: 14px 18px; border-radius: 14px;
       text-decoration: none; box-shadow: 0 10px 30px rgba(244, 197, 66, .25); transition: transform .12s ease, filter .15s ease;
+      animation: ctaPulse 2.2s infinite ease-in-out;
     }
     .play-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
     .play-btn:active { transform: scale(.98); }
+
+    /* Animasi Denyut pada Tombol Putar */
+    @keyframes ctaPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(244, 197, 66, 0.4), 0 8px 25px rgba(0, 0, 0, 0.5);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(244, 197, 66, 0.85), 0 12px 30px rgba(244, 197, 66, 0.3);
+        transform: scale(1.03);
+      }
+    }
+
+    /* Efek Kilatan Cahaya pada Tombol Gold */
+    .btn::after, .play-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -75%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      transition: all 0.75s ease;
+      pointer-events: none;
+    }
+
+    .btn:hover::after, .play-btn:hover::after {
+      left: 125%;
+    }
 
     /* ===== Floating Buttons Container ===== */
     .floating-buttons {
@@ -572,8 +640,18 @@
     .floating-buttons .float-btn img {
       width: 54px; height: 54px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0, 0, 0, .45);
       transition: transform 0.2s ease;
+      animation: floatBounce 3s ease-in-out infinite;
     }
     .floating-buttons .float-btn img:hover { transform: scale(1.12); }
+
+    .floating-buttons .float-tg img {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
 
     .float-btn.with-text { display: flex; align-items: center; gap: 8px; padding-right: 6px; text-decoration: none !important; }
     .float-btn.with-text .float-text {
@@ -631,16 +709,40 @@
     .sbj-bottom-nav {
       position: fixed; left: 0; right: 0; bottom: 0; min-height: 58px; height: auto;
       background: rgba(15, 15, 23, 0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, .08); display: grid; grid-template-columns: repeat(6, 1fr);
+      border-top: 1px solid rgba(244, 197, 66, 0.25); display: grid; grid-template-columns: repeat(6, 1fr);
       z-index: 99999; padding-top: 6px; padding-bottom: calc(6px + env(safe-area-inset-bottom));
       box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
     }
 
     .sbj-nav-item {
+      position: relative;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 4px 2px; gap: 3px; text-decoration: none; background: none; border: 0; cursor: pointer; width: 100%;
+      transition: background-color 0.2s, transform 0.15s;
     }
-    .sbj-nav-item:active { transform: scale(.92); opacity: 0.85; }
+    .sbj-nav-item:active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      transform: scale(.92); opacity: 0.85;
+    }
+
+    .sbj-nav-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 25%;
+      width: 50%;
+      height: 2px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+
+    .sbj-nav-item:hover::before,
+    .sbj-nav-item:active::before {
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
     .sbj-nav-item .icon { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 18px; }
     .sbj-nav-item.wa { color: #25d366; }
     .sbj-nav-item.tg { color: #2aabee; }
